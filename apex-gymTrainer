@@ -1,0 +1,27 @@
+public class GymTrainer {
+    public String trainerName { get; set; }
+    public String specialization { get; set; }
+    public String contactNumber { get; set; }
+
+    // Constructor to initialize gym trainer
+    public GymTrainer(String name, String specialization, String contactNumber) {
+        this.trainerName = name;
+        this.specialization = specialization;
+        this.contactNumber = contactNumber;
+    }
+
+    // Create a new Gym Trainer record in Salesforce
+    public static void createGymTrainer(String name, String specialization, String contactNumber) {
+        Gym_Trainer__c trainer = new Gym_Trainer__c(
+            Name = name,
+            Specialization__c = specialization,
+            Contact_Number__c = contactNumber
+        );
+        insert trainer;
+    }
+
+    // Get gym trainers
+    public static List<Gym_Trainer__c> getGymTrainers() {
+        return [SELECT Name, Specialization__c, Contact_Number__c FROM Gym_Trainer__c];
+    }
+}
