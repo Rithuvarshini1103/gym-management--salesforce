@@ -1,0 +1,27 @@
+public class GymClass {
+    public String className { get; set; }
+    public String trainerName { get; set; }
+    public Date classSchedule { get; set; }
+
+    // Constructor to initialize gym class
+    public GymClass(String className, String trainerName, Date classSchedule) {
+        this.className = className;
+        this.trainerName = trainerName;
+        this.classSchedule = classSchedule;
+    }
+
+    // Create a new Gym Class record in Salesforce
+    public static void createGymClass(String className, String trainerName, Date classSchedule) {
+        Gym_Class__c gymClass = new Gym_Class__c(
+            Name = className,
+            Trainer__c = trainerName,
+            Class_Schedule__c = classSchedule
+        );
+        insert gymClass;
+    }
+
+    // Get gym classes
+    public static List<Gym_Class__c> getGymClasses() {
+        return [SELECT Name, Trainer__c, Class_Schedule__c FROM Gym_Class__c];
+    }
+}
