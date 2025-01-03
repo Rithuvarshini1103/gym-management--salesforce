@@ -1,0 +1,14 @@
+<template>
+    <div class="attendance-container">
+        <h2>Attendance Management</h2>
+        <lightning-input type="text" label="Employee Name" onchange={handleNameChange}></lightning-input>
+        <lightning-input type="date" label="Date" onchange={handleDateChange}></lightning-input>
+        <lightning-button label="Mark Attendance" onclick={markAttendance} variant="brand"></lightning-button>
+        <h3>Attendance Records</h3>
+        <ul>
+            <template for:each={records} for:item="record">
+                <li key={record.id}>{record.name} - {record.date}</li>
+            </template>
+        </ul>
+    </div>
+</template>
