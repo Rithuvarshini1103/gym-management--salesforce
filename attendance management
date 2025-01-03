@@ -1,3 +1,4 @@
+HTML:
 <template>
     <div class="attendance-container">
         <h2>Attendance Management</h2>
@@ -12,3 +13,41 @@
         </ul>
     </div>
 </template>
+
+JS
+import { LightningElement } from 'lwc';
+
+export default class AttendanceManagement extends LightningElement {
+    name = '';
+    date = '';
+    records = [];
+
+    handleNameChange(event) {
+        this.name = event.target.value;
+    }
+
+    handleDateChange(event) {
+        this.date = event.target.value;
+    }
+
+    markAttendance() {
+        if (this.name && this.date) {
+            this.records = [...this.records, { id: this.records.length + 1, name: this.name, date: this.date }];
+            this.name = '';
+            this.date = '';
+        } else {
+            alert('Please fill all fields!');
+        }
+    }
+}
+
+
+JS.METAXML
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata" >
+    <apiVersion>62.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+    <target>lightning__AppPage</target>
+    </targets>
+</LightningComponentBundle>
