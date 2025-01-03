@@ -1,0 +1,35 @@
+public class GymAttendance {
+    public Id gymMemberId { get; set; }
+    public Id gymClassId { get; set; }
+    public Date attendanceDate { get; set; }
+    public Boolean attended { get; set; }
+
+    // Constructor to initialize gym attendance
+    public GymAttendance(Id gymMemberId, Id gymClassId, Date attendanceDate, Boolean attended) {
+        this.gymMemberId = gymMemberId;
+        this.gymClassId = gymClassId;
+        this.attendanceDate = attendanceDate;
+        this.attended = attended;
+    }
+
+    // Record gym attendance
+    public static void recordAttendance(Id gymMemberId, Id gymClassId, Date attendanceDate, Boolean attended) {
+        Gym_Attendance__c attendance = new Gym_Attendance__c(
+            Gym_Member__c = gymMemberId,
+            Gym_Class__c = gymClassId,
+            Attendance_Date__c = attendanceDate,
+            Attended__c = attended
+        );
+        insert attendance;
+    }
+
+    // Get attendance records for a gym class
+    public static List<Gym_Attendance__c> getAttendanceForClass(Id gymClassId) {
+        return [SELECT Gym_Member__c, Attendance_Date__c, Attended__c FROM Gym_Attendance__c WHERE Gym_Class__c = :gymClassId];
+    }
+
+    // Get attendance records for a gym member
+    public static List<Gym_Attendance__c> getAttendanceForMember(Id gymMemberId) {
+        return [SELECT Gym_Class__c, Attendance_Date__c, Attended__c FROM Gym_Attendance__c WHERE Gym_Member__c = :gymMemberId];
+    }
+}
