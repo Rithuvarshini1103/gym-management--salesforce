@@ -1,0 +1,33 @@
+public class GymMember {
+    public String name { get; set; }
+    public String email { get; set; }
+    public Date membershipStartDate { get; set; }
+    public Date membershipEndDate { get; set; }
+    public String membershipStatus { get; set; }
+
+    // Constructor to initialize gym member
+    public GymMember(String name, String email, Date startDate, Date endDate, String status) {
+        this.name = name;
+        this.email = email;
+        this.membershipStartDate = startDate;
+        this.membershipEndDate = endDate;
+        this.membershipStatus = status;
+    }
+
+    // Create a new Gym Member record in Salesforce
+    public static void createGymMember(String name, String email, Date startDate, Date endDate, String status) {
+        Gym_Member__c member = new Gym_Member__c(
+            Name = name,
+            Email__c = email,
+            Membership_Start_Date__c = startDate,
+            Membership_End_Date__c = endDate,
+            Membership_Status__c = status
+        );
+        insert member;
+    }
+
+    // Get gym members
+    public static List<Gym_Member__c> getGymMembers() {
+        return [SELECT Name, Email__c, Membership_Start_Date__c, Membership_End_Date__c, Membership_Status__c FROM Gym_Member__c];
+    }
+}
