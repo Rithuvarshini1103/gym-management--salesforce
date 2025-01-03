@@ -1,0 +1,99 @@
+HTML:
+<template>
+    <div class="gym-management-container">
+        <header>
+            <h1>Gym Management Dashboard</h1>
+        </header>
+         <!-- Navigation Menu -->
+        <nav>
+            <ul>
+                <li onclick={showAttendance}>Attendance</li>
+                <li onclick={showTrainer}>Trainers</li>
+                <li onclick={showClasses}>Classes</li>
+                <li onclick={showDepartment}>Departments</li>
+                <li onclick={showGym}>Gym Info</li>
+                <li onclick={showMembership}>Membership</li>
+            </ul>
+        </nav>
+        <!-- Content Section -->
+        <div class="content">
+            <template if:true={showAttendanceComponent}>
+                <c-attendance-management></c-attendance-management>
+            </template>
+            <template if:true={showTrainerComponent}>
+                <c-trainer-management></c-trainer-management>
+            </template>
+            <template if:true={showClassesComponent}>
+                <c-classes-management></c-classes-management>
+            </template>
+            <template if:true={showDepartmentComponent}>
+                <c-department-management></c-department-management>
+            </template>
+            <template if:true={showGymComponent}>
+                <c-gym-info></c-gym-info>
+            </template>
+            <template if:true={showMembershipComponent}>
+                <c-membership-management></c-membership-management>
+            </template>
+        </div>
+    </div>
+</template>
+
+JS:
+import { LightningElement, track } from 'lwc';
+export default class GymManagement extends LightningElement {
+    @track showAttendanceComponent = false;
+    @track showTrainerComponent = false;
+    @track showClassesComponent = false;
+    @track showDepartmentComponent = false;
+    @track showGymComponent = false;
+    @track showMembershipComponent = false;
+
+    showAttendance() {
+        this.resetComponents();
+        this.showAttendanceComponent = true;
+    }
+
+    showTrainer() {
+        this.resetComponents();
+        this.showTrainerComponent = true;
+    }
+
+    showClasses() {
+        this.resetComponents();
+        this.showClassesComponent = true;
+    }
+
+    showDepartment() {
+        this.resetComponents();
+        this.showDepartmentComponent = true;
+    }
+
+    showGym() {
+        this.resetComponents();
+        this.showGymComponent = true;
+    }
+
+    showMembership() {
+        this.resetComponents();
+        this.showMembershipComponent = true;
+    }
+
+    resetComponents() {
+        this.showAttendanceComponent = false;
+        this.showTrainerComponent = false;
+        this.showClassesComponent = false;
+        this.showDepartmentComponent = false;
+        this.showGymComponent = false;
+        this.showMembershipComponent = false;
+    }
+}
+js.metaxml
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata" >
+    <apiVersion>62.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+    <target>lightning__AppPage</target>
+    </targets>
+</LightningComponentBundle>
