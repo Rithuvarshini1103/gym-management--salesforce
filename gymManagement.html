@@ -1,0 +1,41 @@
+<template>
+    <div class="gym-management-container">
+        <header>
+            <h1>Gym Management Dashboard</h1>
+        </header>
+        
+        <!-- Navigation Menu -->
+        <nav>
+            <ul>
+                <li onclick={showAttendance}>Attendance</li>
+                <li onclick={showTrainer}>Trainers</li>
+                <li onclick={showClasses}>Classes</li>
+                <li onclick={showDepartment}>Departments</li>
+                <li onclick={showGym}>Gym Info</li>
+                <li onclick={showMembership}>Membership</li>
+            </ul>
+        </nav>
+        
+        <!-- Content Section -->
+        <div class="content">
+            <template if:true={showAttendanceComponent}>
+                <c-attendance-management></c-attendance-management>
+            </template>
+            <template if:true={showTrainerComponent}>
+                <c-trainer-management></c-trainer-management>
+            </template>
+            <template if:true={showClassesComponent}>
+                <c-classes-management></c-classes-management>
+            </template>
+            <template if:true={showDepartmentComponent}>
+                <c-department-management></c-department-management>
+            </template>
+            <template if:true={showGymComponent}>
+                <c-gym-info></c-gym-info>
+            </template>
+            <template if:true={showMembershipComponent}>
+                <c-membership-management></c-membership-management>
+            </template>
+        </div>
+    </div>
+</template>

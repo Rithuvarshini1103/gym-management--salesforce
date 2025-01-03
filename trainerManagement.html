@@ -1,0 +1,27 @@
+<template>
+    <div class="trainer-management-container">
+        <header>
+            <h1>Trainer Management</h1>
+        </header>
+
+        <!-- Trainer List -->
+        <div class="trainer-list">
+            <h2>List of Trainers</h2>
+            <ul>
+                <template for:each={trainers} for:item="trainer">
+                    <li key={trainer.id}>
+                        <span>{trainer.name}</span> - <span>{trainer.specialty}</span>
+                    </li>
+                </template>
+            </ul>
+        </div>
+
+        <!-- Add New Trainer Form -->
+        <div class="trainer-form">
+            <h2>Add New Trainer</h2>
+            <lightning-input label="Name" value={trainerName} onchange={handleNameChange}></lightning-input>
+            <lightning-input label="Specialty" value={trainerSpecialty} onchange={handleSpecialtyChange}></lightning-input>
+            <lightning-button label="Add Trainer" onclick={handleAddTrainer}></lightning-button>
+        </div>
+    </div>
+</template>

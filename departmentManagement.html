@@ -1,0 +1,30 @@
+<template>
+    <div class="project-management-container">
+        <header>
+            <h1>Project Management</h1>
+        </header>
+
+        <!-- Project List -->
+        <div class="project-list">
+            <h2>Active Projects</h2>
+            <ul>
+                <template for:each={projects} for:item="project">
+                    <li key={project.id}>
+                        <span>{project.name}</span> - 
+                        <span>{project.manager}</span> - 
+                        <span>{project.deadline}</span>
+                    </li>
+                </template>
+            </ul>
+        </div>
+
+        <!-- Add New Project Form -->
+        <div class="add-project-form">
+            <h2>Add New Project</h2>
+            <lightning-input label="Project Name" value={projectName} onchange={handleProjectNameChange}></lightning-input>
+            <lightning-input label="Project Manager" value={projectManager} onchange={handleProjectManagerChange}></lightning-input>
+            <lightning-input label="Deadline" value={projectDeadline} onchange={handleProjectDeadlineChange} type="date"></lightning-input>
+            <lightning-button label="Add Project" onclick={handleAddProject}></lightning-button>
+        </div>
+    </div>
+</template>

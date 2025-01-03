@@ -1,0 +1,30 @@
+<template>
+    <div class="class-management-container">
+        <header>
+            <h1>Class Management</h1>
+        </header>
+
+        <!-- Class List -->
+        <div class="class-list">
+            <h2>Available Classes</h2>
+            <ul>
+                <template for:each={classes} for:item="gymClass">
+                    <li key={gymClass.id}>
+                        <span>{gymClass.name}</span> - 
+                        <span>{gymClass.instructor}</span> - 
+                        <span>{gymClass.schedule}</span>
+                    </li>
+                </template>
+            </ul>
+        </div>
+
+        <!-- Add New Class Form -->
+        <div class="add-class-form">
+            <h2>Add New Class</h2>
+            <lightning-input label="Class Name" value={className} onchange={handleClassNameChange}></lightning-input>
+            <lightning-input label="Instructor" value={classInstructor} onchange={handleInstructorChange}></lightning-input>
+            <lightning-input label="Schedule" value={classSchedule} onchange={handleScheduleChange}></lightning-input>
+            <lightning-button label="Add Class" onclick={handleAddClass}></lightning-button>
+        </div>
+    </div>
+</template>

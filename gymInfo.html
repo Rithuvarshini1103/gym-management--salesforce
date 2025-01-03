@@ -1,0 +1,23 @@
+<template>
+    <div class="gym-info-container">
+        <header>
+            <h1>Gym Information</h1>
+        </header>
+
+        <!-- Gym Details -->
+        <div class="gym-details">
+            <h2>{gymName}</h2>
+            <p><strong>Location:</strong> {gymLocation}</p>
+            <p><strong>Contact:</strong> {gymContact}</p>
+        </div>
+
+        <!-- Update Gym Information Form -->
+        <div class="update-form">
+            <h2>Update Gym Information</h2>
+            <lightning-input label="Gym Name" value={gymName} onchange={handleGymNameChange}></lightning-input>
+            <lightning-input label="Location" value={gymLocation} onchange={handleGymLocationChange}></lightning-input>
+            <lightning-input label="Contact" value={gymContact} onchange={handleGymContactChange}></lightning-input>
+            <lightning-button label="Save Changes" onclick={handleSaveChanges}></lightning-button>
+        </div>
+    </div>
+</template>

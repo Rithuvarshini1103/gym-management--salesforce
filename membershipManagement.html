@@ -1,0 +1,26 @@
+<template>
+    <div class="membership-management-container">
+        <h2>Membership Management</h2>
+
+        <lightning-button label="Add Membership" onclick={handleAddMembership}></lightning-button>
+        
+        <template if:true={memberships}>
+            <lightning-datatable
+                key-field="id"
+                data={memberships}
+                columns={columns}
+                onsort={handleSort}
+                sorted-by={sortedBy}
+                sorted-direction={sortedDirection}>
+            </lightning-datatable>
+        </template>
+        
+        <template if:true={isAdding}>
+            <lightning-input label="Member Name" value={newMembership.name} onchange={handleInputChange} data-id="name"></lightning-input>
+            <lightning-input label="Membership Type" value={newMembership.type} onchange={handleInputChange} data-id="type"></lightning-input>
+            <lightning-input label="Start Date" type="date" value={newMembership.startDate} onchange={handleInputChange} data-id="startDate"></lightning-input>
+            <lightning-button label="Save" onclick={handleSaveMembership}></lightning-button>
+            <lightning-button label="Cancel" onclick={handleCancel}></lightning-button>
+        </template>
+    </div>
+</template>
