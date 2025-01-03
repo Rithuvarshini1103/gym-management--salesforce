@@ -1,0 +1,87 @@
+HTML:
+<template>
+    <div class="class-management-container">
+        <header>
+            <h1>Class Management</h1>
+        </header>
+
+        <!-- Class List -->
+        <div class="class-list">
+            <h2>Available Classes</h2>
+            <ul>
+                <template for:each={classes} for:item="gymClass">
+                    <li key={gymClass.id}>
+                        <span>{gymClass.name}</span> - 
+                        <span>{gymClass.instructor}</span> - 
+                        <span>{gymClass.schedule}</span>
+                    </li>
+                </template>
+            </ul>
+        </div>
+
+        <!-- Add New Class Form -->
+        <div class="add-class-form">
+            <h2>Add New Class</h2>
+            <lightning-input label="Class Name" value={className} onchange={handleClassNameChange}></lightning-input>
+            <lightning-input label="Instructor" value={classInstructor} onchange={handleInstructorChange}></lightning-input>
+            <lightning-input label="Schedule" value={classSchedule} onchange={handleScheduleChange}></lightning-input>
+            <lightning-button label="Add Class" onclick={handleAddClass}></lightning-button>
+        </div>
+    </div>
+</template>
+
+js:
+import { LightningElement, track } from 'lwc';
+
+export default class ClassManagement extends LightningElement {
+    @track classes = [
+        { id: 1, name: 'Yoga', instructor: 'Jane Smith', schedule: 'Mon-Wed-Fri, 7:00 AM' },
+        { id: 2, name: 'Cardio', instructor: 'John Doe', schedule: 'Tue-Thu-Sat, 6:00 PM' },
+        { id: 3, name: 'Pilates', instructor: 'Emily Davis', schedule: 'Mon-Fri, 9:00 AM' }
+    ];
+
+    className = '';
+    classInstructor = '';
+    classSchedule = '';
+
+    // Handle class name change
+    handleClassNameChange(event) {
+        this.className = event.target.value;
+    }
+
+    // Handle instructor name change
+    handleInstructorChange(event) {
+        this.classInstructor = event.target.value;
+    }
+
+    // Handle schedule change
+    handleScheduleChange(event) {
+        this.classSchedule = event.target.value;
+    }
+
+    // Add a new class to the list
+    handleAddClass() {
+        if (this.className && this.classInstructor && this.classSchedule) {
+            const newClass = {
+                id: this.classes.length + 1,
+                name: this.className,
+                instructor: this.classInstructor,
+                schedule: this.classSchedule
+            };
+            this.classes = [...this.classes, newClass]; // Add the new class to the list
+            this.className = '';
+            this.classInstructor = '';
+            this.classSchedule = '';
+        }
+    }
+}
+
+js.metaxml
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+    <target>lightning__AppPage</target>
+    </targets>
+</LightningComponentBundle>
